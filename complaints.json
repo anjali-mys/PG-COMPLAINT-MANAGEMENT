@@ -12,28 +12,16 @@
     "status": "Pending"
   },
   {
-    "id": 1786964279469,
+    "id": 1786987651124,
     "residentName": "sam",
     "residenceType": "Apartment",
     "residenceName": "lotus",
     "roomNumber": "5",
     "contact": "9978234493",
-    "category": "Internet",
-    "description": "slow network",
+    "category": "Electricity",
+    "description": "no current",
+    "complaintDate": "2026-08-17",
     "priority": "High",
-    "status": "Pending"
-  },
-  {
-    "id": 1786965600813,
-    "residentName": "sam",
-    "residenceType": "Apartment",
-    "residenceName": "lotus",
-    "roomNumber": "5",
-    "contact": "9978234493",
-    "category": "Maintenance",
-    "description": "not clean",
-    "complaintDate": "2026-09-01",
-    "priority": "Medium",
-    "status": "Pending"
+    "status": "In Progress"
   }
 ]

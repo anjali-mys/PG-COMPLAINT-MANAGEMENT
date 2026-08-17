@@ -47,8 +47,8 @@ app.get("/api/complaints", function (req, res) {
 
 // GET - Retrieve one specific complaint
 app.get("/api/complaints/:id", function (req, res) {
-    const complaints = readComplaints();
 
+    const complaints = readComplaints();
     const id = Number(req.params.id);
 
     const complaint = complaints.find(function (item) {
@@ -68,40 +68,62 @@ app.get("/api/complaints/:id", function (req, res) {
 // POST - Create complaint
 app.post("/api/complaints", function (req, res) {
 
+    const requiredFields = [
+        "residentName",
+        "residenceType",
+        "residenceName",
+        "roomNumber",
+        "contact",
+        "category",
+        "description",
+        "complaintDate",
+        "priority"
+    ];
+
+    const missingFields = requiredFields.filter(function (field) {
+        return (
+            req.body[field] === undefined ||
+            String(req.body[field]).trim() === ""
+        );
+    });
+
+    if (missingFields.length > 0) {
+        return res.status(400).json({
+            message: "Please provide all required complaint information.",
+            missingFields: missingFields
+        });
+    }
+
+
+    const validPriorities = [
+        "Low",
+        "Medium",
+        "High"
+    ];
+
+    if (!validPriorities.includes(req.body.priority)) {
+        return res.status(400).json({
+            message: "Invalid priority."
+        });
+    }
+
+
     const complaints = readComplaints();
 
     const complaint = {
         id: Date.now(),
 
-        residentName:
-            req.body.residentName,
+        residentName: req.body.residentName,
+        residenceType: req.body.residenceType,
+        residenceName: req.body.residenceName,
+        roomNumber: req.body.roomNumber,
+        contact: req.body.contact,
+        category: req.body.category,
+        description: req.body.description,
+        complaintDate: req.body.complaintDate,
+        priority: req.body.priority,
 
-        residenceType:
-            req.body.residenceType,
-
-        residenceName:
-            req.body.residenceName,
-
-        roomNumber:
-            req.body.roomNumber,
-
-        contact:
-            req.body.contact,
-
-        category:
-            req.body.category,
-
-        description:
-            req.body.description,
-
-        complaintDate:
-            req.body.complaintDate,
-
-        priority:
-            req.body.priority,
-
-        status:
-            "Pending"
+        status: "Pending"
     };
 
 
@@ -117,7 +139,6 @@ app.post("/api/complaints", function (req, res) {
 app.put("/api/complaints/:id", function (req, res) {
 
     const complaints = readComplaints();
-
     const id = Number(req.params.id);
 
     const complaint = complaints.find(function (item) {
@@ -133,22 +154,62 @@ app.put("/api/complaints/:id", function (req, res) {
 
 
     if (req.body.status !== undefined) {
+
+        const validStatuses = [
+            "Pending",
+            "In Progress",
+            "Resolved"
+        ];
+
+        if (!validStatuses.includes(req.body.status)) {
+            return res.status(400).json({
+                message: "Invalid complaint status."
+            });
+        }
+
         complaint.status = req.body.status;
     }
 
 
+    if (req.body.category !== undefined) {
+
+        if (String(req.body.category).trim() === "") {
+            return res.status(400).json({
+                message: "Category cannot be empty."
+            });
+        }
+
+        complaint.category = req.body.category;
+    }
+
+
     if (req.body.description !== undefined) {
+
+        if (String(req.body.description).trim() === "") {
+            return res.status(400).json({
+                message: "Description cannot be empty."
+            });
+        }
+
         complaint.description = req.body.description;
     }
 
 
     if (req.body.priority !== undefined) {
+
+        const validPriorities = [
+            "Low",
+            "Medium",
+            "High"
+        ];
+
+        if (!validPriorities.includes(req.body.priority)) {
+            return res.status(400).json({
+                message: "Invalid priority."
+            });
+        }
+
         complaint.priority = req.body.priority;
-    }
-
-
-    if (req.body.category !== undefined) {
-        complaint.category = req.body.category;
     }
 
 
@@ -162,7 +223,6 @@ app.put("/api/complaints/:id", function (req, res) {
 app.delete("/api/complaints/:id", function (req, res) {
 
     const complaints = readComplaints();
-
     const id = Number(req.params.id);
 
     const newComplaints = complaints.filter(function (item) {
@@ -171,16 +231,13 @@ app.delete("/api/complaints/:id", function (req, res) {
 
 
     if (newComplaints.length === complaints.length) {
-
         return res.status(404).json({
             message: "Complaint not found"
         });
-
     }
 
 
     saveComplaints(newComplaints);
-
 
     res.json({
         message: "Complaint deleted successfully"
@@ -190,9 +247,7 @@ app.delete("/api/complaints/:id", function (req, res) {
 
 // Start server
 app.listen(PORT, function () {
-
     console.log(
         `Server running at http://localhost:${PORT}`
     );
-
 });

@@ -270,10 +270,6 @@ function displayManagementComplaints(complaintsToDisplay) {
                     View Details
                 </button>
 
-                <button onclick="editComplaint(${complaint.id})">
-                    Edit Complaint
-                </button>
-
                 <label>
                     <strong>Update Status:</strong>
                 </label>
