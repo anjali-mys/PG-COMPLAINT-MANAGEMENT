@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Apartment / PG Complaint Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Apartment / PG Complaint Management System</h1>
+    </header>
+
+    <main>
+
+        <!-- Resident Complaint Form -->
+        <section class="section">
+
+            <h2>Resident Complaint Form</h2>
+
+            <form id="complaintForm">
+
+                <label for="residentName">Resident Name:</label>
+                <input type="text" id="residentName" required>
+
+                <label for="residenceType">Residence Type:</label>
+                <select id="residenceType" required>
+                    <option value="">Select Residence Type</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="PG">PG</option>
+                </select>
+
+                <label for="residenceName">Apartment / PG Name:</label>
+                <input type="text" id="residenceName" required>
+
+                <label for="roomNumber">Flat / Room Number:</label>
+                <input type="text" id="roomNumber" required>
+
+                <label for="contact">Contact Number:</label>
+                <input type="tel" id="contact" required>
+
+                <label for="category">Complaint Category:</label>
+                <select id="category" required>
+                    <option value="">Select Category</option>
+                    <option value="Electricity">Electricity</option>
+                    <option value="Water">Water</option>
+                    <option value="Plumbing">Plumbing</option>
+                    <option value="Internet">Internet</option>
+                    <option value="Housekeeping">Housekeeping</option>
+                    <option value="Maintenance">Maintenance</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="description">Complaint Description:</label>
+                <textarea id="description" rows="5" required></textarea>
+
+                <label for="complaintDate">Complaint Date:</label>
+                <input type="date" id="complaintDate" required>
+
+                <label for="priority">Priority:</label>
+                <select id="priority" required>
+                    <option value="">Select Priority</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+
+                <button type="submit">Submit Complaint</button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Resident Complaint View -->
+        <section class="section">
+
+            <h2>My Complaints</h2>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search complaints..."
+            >
+
+            <div id="complaintList">
+                <p>No complaints submitted yet.</p>
+            </div>
+
+        </section>
+
+
+        <!-- Management Dashboard -->
+        <section class="section">
+
+            <h2>Management Dashboard</h2>
+
+            <p class="manager-info">
+                Property Maintenance Manager
+            </p>
+
+            <div id="managementList">
+                <p>No complaints available.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

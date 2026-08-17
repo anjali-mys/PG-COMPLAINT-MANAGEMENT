@@ -1,0 +1,113 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 30px;
+    background-color: #f4f6f8;
+    color: #222;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    background-color: #1f4e79;
+    padding: 18px;
+    margin: 0 auto 25px auto;
+    border-radius: 8px;
+    max-width: 900px;
+}
+
+h2 {
+    color: #000000;
+    margin-top: 25px;
+    text-align: center;
+}
+
+form {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 700px;
+    margin: 20px auto;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    background-color: #1f4e79;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: #163a5c;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 30px 0;
+}
+
+#complaintList {
+    max-width: 700px;
+    margin: auto;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    form {
+        padding: 18px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+}
+.complaint-card {
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 700px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.complaint-card h3 {
+    color: #1f4e79;
+    margin-top: 0;
+}
+
+.complaint-card p {
+    margin: 8px 0;
+}
